@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+
   actions: {
     mobiledocWasUpdated(updatedMobiledoc) {
       Ember.Logger.log('New mobiledoc:',updatedMobiledoc);
@@ -13,6 +14,7 @@ export default Ember.Controller.extend({
     },
     didCreateEditor(editor) {
       Ember.Logger.log('created the editor:', editor);
+      const controller = this;
 
       editor.registerKeyCommand({
         str: 'enter',
@@ -31,7 +33,7 @@ export default Ember.Controller.extend({
       editor.onTextInput({
         text: '@',
         run(editor) {
-          console.log("@ sign typed", this.controller);
+          console.log("@ sign typed", controller.set("showMentions"));
         }
       })
 
